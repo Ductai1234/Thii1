@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{|/don-hang/update/*{donHang.id}|}" method="post">
+    Ten Khach Hang <input type="text" name="tenKhachHang" th:field="*{donHang.tenKhachHang}"><br>
+    San Pham
+    <select name="sanPham">
+        <option
+                th:each="sanPham : ${listSanPham}"
+                th:value="${sanPham.id}"
+                th:text="${sanPham.tenSanPham}"
+                th:selected="${donHang.sanPham.id==sanPham.id}"
+        ></option>
+
+    </select><br>
+    So Luong Dat<input type="text" name="soLuongDat" th:field="*{donHang.soLuongDat}">
+    Trang Thai:
+    Chua Thanh Toan<input type="radio" name="trangThai" value="1" th:field="*{donHang.trangThai}">
+    Thanh Toan<input type="radio" name="trangThai" value="0" th:field="*{donHang.trangThai}"><br>
+<button type="submit">Update</button>
+</form>
+</body>
+</html>

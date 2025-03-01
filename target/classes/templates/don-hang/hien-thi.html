@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/don-hang/add" method="post">
+    Ten Khach Hang <input type="text" name="tenKhachHang"><br>
+    San Pham
+    <select name="sanPham">
+         <option
+        th:each="sanPham : ${listSanPham}"
+        th:value="${sanPham.id}"
+        th:text="${sanPham.tenSanPham}"
+        ></option>
+
+    </select><br>
+    So Luong Dat<input type="text" name="soLuongDat">
+    Trang Thai:
+    Chua Thanh Toan<input type="radio" name="trangThai" value="1">
+    Thanh Toan<input type="radio" name="trangThai" value="0">
+    <button type="submit">Add</button>
+
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>TenKhach Hang</th>
+        <th>San Pham</th>
+        <th>So Luong Dat</th>
+        <th>Trang Thai</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody th:each="donHang:${listDonHang}">
+    <tr>
+        <td th:text="${donHang.id}"></td>
+        <td th:text="${donHang.tenKhachHang}"></td>
+        <td th:text="${donHang.sanPham.tenSanPham}"></td>
+        <td th:text="${donHang.soLuongDat}"></td>
+        <td th:text="${donHang.trangThai ?' Chua Thanh Toan':'  Thanh Toan'}"></td>
+        <td>
+            <a th:href="@{|/don-hang/delete/*{donHang.id}|}">Delete</a>
+            <a th:href="@{|/don-hang/detail/*{donHang.id}|}">Detail</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
